@@ -14,15 +14,14 @@ def home():
     response = ""
 
     if request.method == "POST":
-        user_input = request.form.get("user_text")
+        user_input = request.form.get("user_text", "").strip()
 
-        if not user_input.strip():
+        if not user_input:
             response = "❌ Please enter some text."
         else:
             try:
                 # Call your Gemini AI helper function
                 response = get_response(user_input)
-                print(response)
             except Exception as e:
                 response = f"⚠️ Error: {e}"
 
